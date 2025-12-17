@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.RegisterController"
+            style="-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" prefWidth="500" prefHeight="700">
+            <padding>
+                <Insets top="50" right="40" bottom="50" left="40"/>
+            </padding>
+
+            <!-- Header -->
+            <VBox alignment="CENTER" spacing="10">
+                <Text fill="white">
+                    <font>
+                        <Font name="System" size="32" style="BOLD"/>
+                    </font>
+                    Créer un compte
+                </Text>
+                <Text fill="#e0e0e0">
+                    <font>
+                        <Font size="14"/>
+                    </font>
+                    Rejoignez notre agence de voyage
+                </Text>
+            </VBox>
+
+            <!-- Register Form -->
+            <VBox spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 30;">
+                <!-- Role Selection -->
+                <Label text="Je suis un:" style="-fx-font-weight: bold;"/>
+                <ComboBox fx:id="roleComboBox" promptText="Sélectionnez votre rôle"
+                          style="-fx-pref-height: 40; -fx-pref-width: 100%;"/>
+
+                <!-- Username -->
+                <Label text="Nom d'utilisateur *" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="usernameField" promptText="Choisissez un nom d'utilisateur"
+                           style="-fx-pref-height: 40;"/>
+
+                <!-- Email -->
+                <Label text="Email *" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="emailField" promptText="Votre adresse email"
+                           style="-fx-pref-height: 40;"/>
+
+                <!-- Password -->
+                <Label text="Mot de passe *" style="-fx-font-weight: bold;"/>
+                <PasswordField fx:id="passwordField" promptText="Choisissez un mot de passe sécurisé"
+                               style="-fx-pref-height: 40;"/>
+
+                <!-- Confirm Password -->
+                <Label text="Confirmer le mot de passe *" style="-fx-font-weight: bold;"/>
+                <PasswordField fx:id="confirmPasswordField" promptText="Répétez votre mot de passe"
+                               style="-fx-pref-height: 40;"/>
+
+                <!-- Error/Success Message -->
+                <Label fx:id="messageLabel" style="-fx-font-size: 12;" visible="false"/>
+
+                <!-- Buttons -->
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="registerButton" text="S'inscrire"
+                            style="-fx-background-color: #667eea; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 150;"
+                            onAction="#handleRegister"/>
+
+                    <Button fx:id="backButton" text="Retour"
+                            style="-fx-background-color: #e0e0e0; -fx-text-fill: #333; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 150;"
+                            onAction="#handleBack"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

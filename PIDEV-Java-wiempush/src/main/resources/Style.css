@@ -1,0 +1,60 @@
+/* styles.css */
+
+/* Style du texte */
+.text {
+    -fx-font-size: 14px;
+    -fx-fill: #333333;
+}
+
+/* Style du bouton */
+.button {
+    -fx-background-color: #FF1493;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 30px;
+}
+
+/* Style du DatePicker */
+.date-picker {
+    -fx-pref-width: 201px;
+    -fx-pref-height: 26px;
+}
+
+/* Style du champ de texte */
+.text-field {
+    -fx-pref-width: 202px;
+    -fx-pref-height: 26px;
+}
+
+/* Style de l'AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f4f4f4;
+}
+.pane_backk_body{
+    -fx-background-color: #ff1493;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #eeeeee;
+    -fx-border-style: solid;
+}
+Otheer_btn{
+    -fx-background-color: #bb2f7a;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: #ff1493;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+.pane_Body00{
+    -fx-background-color: #c42c7c;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-style: solid;
+    -fx-border-color:#eeeeee;
+}

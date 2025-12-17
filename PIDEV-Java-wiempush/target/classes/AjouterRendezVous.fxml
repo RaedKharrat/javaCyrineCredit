@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterRendezVous">
+   <children>
+      <Text fill="#333333" layoutX="39.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fill="#333333" layoutX="39.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date du rendez-vous:" />
+      <DatePicker fx:id="dateReservation" layoutX="264.0" layoutY="64.0" prefHeight="26.0" prefWidth="201.0" promptText="Sélectionnez la date" />
+      <Text fill="#333333" layoutX="39.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure du rendez-vous:" />
+      <TextField fx:id="heure" layoutX="264.0" layoutY="124.0" prefHeight="26.0" prefWidth="202.0" promptText="Format HH" />
+      <Button layoutX="414.0" layoutY="194.0" mnemonicParsing="false" onAction="#AjouterRendezVous" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF1493; -fx-text-fill: white;" text="Ajouter Rendez-vous" />
+      <Button layoutX="414.0" layoutY="240.0" mnemonicParsing="false" onAction="#naviguer" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF1493; -fx-text-fill: white;" text="Liste des etablissement" />
+   </children>
+   <stylesheets>
+      <URL value="@Style.css" />
+   </stylesheets>
+</AnchorPane>

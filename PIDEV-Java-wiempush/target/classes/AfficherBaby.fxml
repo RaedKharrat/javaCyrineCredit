@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ListOfBabiesFront">
+    <children>
+        <HBox layoutX="-2.0" prefHeight="67.0" prefWidth="908.0" style="-fx-background-color: white;">
+            <children>
+                <ImageView fitHeight="78.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@416364332_1325063378185480_6052644255133416633_n.jpg" />
+                    </image>
+                </ImageView>
+                <Label alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="105.0" text="Bellybump" textFill="#eb94cb">
+                    <font>
+                        <Font name="Edwardian Script ITC" size="28.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="69.0" prefWidth="280.0" spacing="20.0" style="-fx-background-color: white;" translateX="70.0" />
+            </children>
+        </HBox>
+        <HBox layoutY="77.0" prefHeight="418.0" prefWidth="200.0" style="-fx-background-color: white;">
+            <children>
+                <VBox prefHeight="418.0" prefWidth="206.0" style="-fx-background-color: white;">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#naviguerrendez" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: #eb94cb;" text="Medical Informations" translateY="110.0" />
+                        <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#naviguerEtab" prefHeight="26.0" prefWidth="202.0" style="-fx-background-color: #eb94cb;" text="Baby" translateY="40.0" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <Text fill="#ef1dd0" layoutX="364.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add baby">
+            <font>
+                <Font name="Algerian" size="31.0" />
+            </font>
+        </Text>
+        <Text layoutX="243.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <Text layoutX="226.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <Text layoutX="208.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <TextField fx:id="name" layoutX="295.0" layoutY="180.0" promptText="baby name" />
+        <ChoiceBox fx:id="gender" layoutX="296.0" layoutY="287.0" onAction="#initialize" prefWidth="150.0" />
+        <TextField fx:id="lastname" layoutX="296.0" layoutY="232.0" promptText="baby last name" />
+        <Button layoutX="661.0" layoutY="407.0" mnemonicParsing="false" onAction="#ajouterBaby" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #eb94cb;" text="Add" />
+        <Text layoutX="521.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weight">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <Text layoutX="544.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="size">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <TextField fx:id="size" layoutX="586.0" layoutY="180.0" promptText="baby size" />
+        <TextField fx:id="weight" layoutX="586.0" layoutY="232.0" promptText="baby weight" />
+        <Text layoutX="481.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of birth">
+            <font>
+                <Font name="Cambria" size="19.0" />
+            </font>
+        </Text>
+        <DatePicker fx:id="dateofbirth" layoutX="589.0" layoutY="290.0" />
+    </children>
+
+</AnchorPane>

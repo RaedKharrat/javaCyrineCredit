@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ListOfBabiesFront">
+    <children>
+
+        <HBox layoutX="-2.0" prefHeight="45.0" prefWidth="908.0" style="-fx-background-color: white;">
+            <children>
+                <ImageView fitHeight="79.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@416364332_1325063378185480_6052644255133416633_n.jpg" />
+                    </image>
+                </ImageView>
+                <Label alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="105.0" text="Bellybump" textFill="#eb94cb">
+                    <font>
+                        <Font name="Edwardian Script ITC" size="28.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="69.0" prefWidth="280.0" spacing="20.0" style="-fx-background-color: white;" translateX="70.0">
+                    <children>
+                        <TextField alignment="CENTER" prefHeight="26.0" prefWidth="238.0" promptText="Recherche" />
+                        <ImageView fitHeight="28.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+
+                        </ImageView>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <ListView fx:id="babyListView" layoutX="298.0" layoutY="144.0" prefHeight="308.0" prefWidth="265.0" style="-fx-background-color: Apparence;" AnchorPane.bottomAnchor="48.799999999999955" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="343.5999999999999" AnchorPane.topAnchor="144.0">
+            <!-- Set a semi-transparent white background -->
+
+        </ListView>
+    </children>
+</AnchorPane>

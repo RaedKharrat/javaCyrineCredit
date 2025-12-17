@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ListOfInfoMedicaux">
+    <children>
+
+        <HBox layoutX="-2.0" prefHeight="67.0" prefWidth="908.0" style="-fx-background-color: white;">
+            <children>
+
+                <Label alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="105.0" text="Bellybump" textFill="#eb94cb">
+                    <font>
+                        <Font name="Edwardian Script ITC" size="28.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="69.0" prefWidth="280.0" spacing="20.0" style="-fx-background-color: white;" translateX="70.0">
+                    <children>
+                        <TextField alignment="CENTER" prefHeight="26.0" prefWidth="238.0" promptText="Recherche" />
+                        <ImageView fitHeight="28.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+
+                        </ImageView>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <ListView fx:id="infoMedicauxListView" layoutX="177.0" layoutY="115.0" prefHeight="302.0" prefWidth="314.0" style="-fx-background-color: Apparence;" AnchorPane.bottomAnchor="83.39999999999998" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="415.00000000000006" AnchorPane.topAnchor="115.0" />
+
+    </children>
+</AnchorPane>
