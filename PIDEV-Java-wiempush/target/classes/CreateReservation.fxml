@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.CreateReservationController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <HBox style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+              alignment="CENTER_LEFT" spacing="20">
+            <Label text="🎫 Créer une Réservation" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 30;" alignment="TOP_CENTER">
+
+            <!-- Demande Info -->
+            <VBox spacing="10" style="-fx-background-color: #e8f5e8; -fx-padding: 20; -fx-background-radius: 10;">
+                <Label text="Détails de la demande" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <GridPane hgap="20" vgap="10">
+                    <Label text="Titre:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="demandeTitle" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Destination:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="demandeDestination" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Budget:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="demandeBudget" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Agent:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="demandeAgent" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                </GridPane>
+            </VBox>
+
+            <!-- Reservation Form -->
+            <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10;">
+
+                <Label text="Détails de la réservation" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+                <!-- Total Price -->
+                <VBox spacing="5">
+                    <Label text="Prix Total (DT) *" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="totalPriceField" promptText="Ex: 1200.00"
+                               style="-fx-pref-height: 40;"/>
+                    <Label fx:id="priceError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                </VBox>
+
+                <!-- Notes -->
+                <VBox spacing="5">
+                    <Label text="Notes additionnelles" style="-fx-font-weight: bold;"/>
+                    <TextArea fx:id="notesArea" promptText="Informations supplémentaires..."
+                              wrapText="true" style="-fx-pref-height: 100;"/>
+                </VBox>
+
+                <!-- Message -->
+                <Label fx:id="messageLabel" style="-fx-font-size: 14;" visible="false"/>
+
+                <!-- Buttons -->
+                <HBox spacing="15" alignment="CENTER">
+                    <Button fx:id="createButton" text="Créer Réservation"
+                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 200;"
+                            onAction="#handleCreate"/>
+
+                    <Button fx:id="cancelButton" text="Annuler"
+                            style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 120;"
+                            onAction="#handleCancel"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;"
+              alignment="CENTER">
+            <Label text="Les réservations ne peuvent être créées que pour les demandes validées"
+                   style="-fx-text-fill: #666;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -9,8 +9,9 @@ import java.util.Base64;
 public class AuthService {
 
     // Register a new user
+    // Register a new user
     public boolean register(User user) {
-        String query = "INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO user (username, email, password, role, created_at) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = MaConnexion.getInstance().getCnx().prepareStatement(query)) {
             ps.setString(1, user.getUsername());
@@ -21,6 +22,9 @@ public class AuthService {
             ps.setString(3, hashedPassword);
 
             ps.setString(4, user.getRole().toString());
+
+            // Add the created_at timestamp
+            ps.setTimestamp(5, Timestamp.valueOf(user.getCreatedAt()));
 
             int rows = ps.executeUpdate();
             return rows > 0;

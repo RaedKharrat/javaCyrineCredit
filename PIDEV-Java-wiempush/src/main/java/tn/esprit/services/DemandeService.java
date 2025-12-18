@@ -15,8 +15,8 @@ public class DemandeService implements IService<Demande> {
 
     @Override
     public void add(Demande demande) {
-        String query = "INSERT INTO demande (title, description, destination, budget, start_date, end_date, status, client_id, assigned_agent_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO demande (title, description, destination, budget, start_date, end_date, status, created_at, client_id, assigned_agent_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = MaConnexion.getInstance().getCnx().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, demande.getTitle());
@@ -26,12 +26,13 @@ public class DemandeService implements IService<Demande> {
             ps.setDate(5, Date.valueOf(demande.getStartDate()));
             ps.setDate(6, Date.valueOf(demande.getEndDate()));
             ps.setString(7, demande.getStatus().toString());
-            ps.setInt(8, demande.getClient().getId());
+            ps.setTimestamp(8, Timestamp.valueOf(demande.getCreatedAt())); // ADD THIS
+            ps.setInt(9, demande.getClient().getId());
 
             if (demande.getAssignedAgent() != null) {
-                ps.setInt(9, demande.getAssignedAgent().getId());
+                ps.setInt(10, demande.getAssignedAgent().getId());
             } else {
-                ps.setNull(9, Types.INTEGER);
+                ps.setNull(10, Types.INTEGER);
             }
 
             ps.executeUpdate();

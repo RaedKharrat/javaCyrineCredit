@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.CreateDemandeController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <HBox style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+              alignment="CENTER_LEFT" spacing="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fitWidth="25" fitHeight="25">
+                    <Image url="@../images/travel-icon.png" />
+                </ImageView>
+                <Text fill="#667eea" font="$x3">
+                    <Font size="18" style="BOLD"/>
+                    Nouvelle Demande
+                </Text>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="agentLabel" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background: transparent;">
+            <VBox spacing="20" style="-fx-padding: 30; -fx-max-width: 800;" alignment="TOP_CENTER">
+
+                <!-- Agent Info -->
+                <HBox spacing="15" alignment="CENTER_LEFT"
+                      style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-background-radius: 10;">
+                    <ImageView fitWidth="50" fitHeight="50">
+                        <Image url="@../images/agent-icon.png" />
+                    </ImageView>
+                    <VBox spacing="5">
+                        <Label fx:id="selectedAgentName" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                        <Label fx:id="selectedAgentEmail" style="-fx-text-fill: #666;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Demande Form -->
+                <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 25; -fx-background-radius: 10;">
+
+                    <!-- Title -->
+                    <VBox spacing="5">
+                        <Label text="Titre de la demande *" style="-fx-font-weight: bold;"/>
+                        <TextField fx:id="titleField" promptText="Ex: Voyage d'affaires à Paris"
+                                   style="-fx-pref-height: 40;"/>
+                        <Label fx:id="titleError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                    </VBox>
+
+                    <!-- Destination -->
+                    <VBox spacing="5">
+                        <Label text="Destination *" style="-fx-font-weight: bold;"/>
+                        <TextField fx:id="destinationField" promptText="Ex: Paris, France"
+                                   style="-fx-pref-height: 40;"/>
+                        <Label fx:id="destinationError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                    </VBox>
+
+                    <!-- Budget -->
+                    <VBox spacing="5">
+                        <Label text="Budget (DT) *" style="-fx-font-weight: bold;"/>
+                        <TextField fx:id="budgetField" promptText="Ex: 1500.00"
+                                   style="-fx-pref-height: 40;"/>
+                        <Label fx:id="budgetError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                    </VBox>
+
+                    <!-- Dates -->
+                    <HBox spacing="15">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Date de début *" style="-fx-font-weight: bold;"/>
+                            <DatePicker fx:id="startDatePicker" style="-fx-pref-height: 40;"/>
+                            <Label fx:id="startDateError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                        </VBox>
+
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Date de fin *" style="-fx-font-weight: bold;"/>
+                            <DatePicker fx:id="endDatePicker" style="-fx-pref-height: 40;"/>
+                            <Label fx:id="endDateError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Description -->
+                    <VBox spacing="5">
+                        <Label text="Description détaillée *" style="-fx-font-weight: bold;"/>
+                        <TextArea fx:id="descriptionArea" promptText="Décrivez votre demande en détail..."
+                                  wrapText="true" style="-fx-pref-height: 120;"/>
+                        <Label fx:id="descriptionError" textFill="RED" style="-fx-font-size: 12;" visible="false"/>
+                    </VBox>
+
+                    <!-- Error/Success Message -->
+                    <Label fx:id="messageLabel" style="-fx-font-size: 14;" visible="false"/>
+
+                    <!-- Buttons -->
+                    <HBox spacing="15" alignment="CENTER">
+                        <Button fx:id="submitButton" text="Soumettre la demande"
+                                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 200;"
+                                onAction="#handleSubmit"/>
+
+                        <Button fx:id="cancelButton" text="Annuler"
+                                style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 45; -fx-pref-width: 120;"
+                                onAction="#handleCancel"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;"
+              alignment="CENTER">
+            <Label text="Remplissez tous les champs obligatoires (*)" style="-fx-text-fill: #666;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

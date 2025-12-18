@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.AdminDashboardController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- Top Navigation -->
+    <top>
+        <HBox style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+              alignment="CENTER_LEFT" spacing="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fitWidth="30" fitHeight="30">
+                    <Image url="@../images/travel-icon.png" />
+                </ImageView>
+                <Text fill="#667eea" font="$x3">
+                    <Font size="20" style="BOLD"/>
+                    Travel Agency
+                </Text>
+                <Label text="| Admin Dashboard" style="-fx-text-fill: #666; -fx-font-size: 14;"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox alignment="CENTER" spacing="15">
+                <Label fx:id="welcomeLabel" style="-fx-font-weight: bold;"/>
+                <Button fx:id="logoutButton" text="Déconnexion"
+                        style="-fx-background-color: #ff6b6b; -fx-text-fill: white; -fx-font-weight: bold;"
+                        onAction="#handleLogout"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+
+            <!-- Tab 1: Dashboard Overview -->
+            <Tab text="📊 Tableau de Bord">
+                <ScrollPane fitToWidth="true">
+                    <VBox spacing="20" style="-fx-padding: 20;">
+
+                        <!-- Statistics Cards -->
+                        <HBox spacing="20">
+                            <!-- Users Card -->
+                            <VBox style="-fx-background-color: #e3f2fd; -fx-padding: 20; -fx-background-radius: 10; -fx-pref-width: 180;">
+                                <Label text="👥 Utilisateurs" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                                <Label fx:id="totalUsers" text="0" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                                <HBox spacing="10">
+                                    <Label text="Clients:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="clientCount" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="Agents:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="agentCount" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="Admins:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="adminCount" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Demandes Card -->
+                            <VBox style="-fx-background-color: #fff3e0; -fx-padding: 20; -fx-background-radius: 10; -fx-pref-width: 180;">
+                                <Label text="📝 Demandes" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                                <Label fx:id="totalDemandes" text="0" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                                <HBox spacing="10">
+                                    <Label text="En attente:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="pendingDemandes" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="En cours:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="inProgressDemandes" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="Validées:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="validatedDemandes" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                            </VBox>
+
+                            <!-- Reservations Card -->
+                            <VBox style="-fx-background-color: #e8f5e8; -fx-padding: 20; -fx-background-radius: 10; -fx-pref-width: 180;">
+                                <Label text="🎫 Réservations" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                                <Label fx:id="totalReservations" text="0" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                                <HBox spacing="10">
+                                    <Label text="Revenu total:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="totalRevenue" text="0 DT" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="Confirmées:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="confirmedReservations" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                                <HBox spacing="10">
+                                    <Label text="Terminées:" style="-fx-font-size: 12;"/>
+                                    <Label fx:id="completedReservations" text="0" style="-fx-font-size: 12; -fx-font-weight: bold;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Charts Section -->
+                        <HBox spacing="20">
+                            <VBox spacing="10" style="-fx-pref-width: 400;">
+                                <Label text="📈 Statistiques des Demandes" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                                <PieChart fx:id="demandePieChart" style="-fx-background-color: white; -fx-padding: 10;"/>
+                            </VBox>
+
+                            <VBox spacing="10" style="-fx-pref-width: 400;">
+                                <Label text="📊 Répartition des Utilisateurs" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                                <PieChart fx:id="userPieChart" style="-fx-background-color: white; -fx-padding: 10;"/>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Recent Activity -->
+                        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10;">
+                            <Label text="📋 Activité Récente" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                            <TableView fx:id="recentActivityTable" style="-fx-background-color: transparent;">
+                                <columns>
+                                    <TableColumn fx:id="colActivityType" text="Type" prefWidth="100"/>
+                                    <TableColumn fx:id="colActivityDescription" text="Description" prefWidth="300"/>
+                                    <TableColumn fx:id="colActivityDate" text="Date" prefWidth="150"/>
+                                    <TableColumn fx:id="colActivityUser" text="Utilisateur" prefWidth="120"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+
+            <!-- Tab 2: Manage Users -->
+            <Tab text="👥 Gestion des Utilisateurs">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Gestion des Utilisateurs" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Search and Actions -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <TextField fx:id="searchUserField" promptText="Rechercher par nom ou email..."
+                                   style="-fx-pref-height: 40; -fx-pref-width: 300;"/>
+                        <Button text="🔍 Rechercher" style="-fx-pref-height: 40;" onAction="#handleSearchUser"/>
+                        <Button text="🔄 Actualiser" style="-fx-pref-height: 40;" onAction="#handleRefreshUsers"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="addUserButton" text="+ Ajouter Utilisateur"
+                                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 40;"
+                                onAction="#handleAddUser"/>
+                    </HBox>
+
+                    <!-- Users Table -->
+                    <TableView fx:id="usersTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colUserId" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="colUsername" text="Nom d'utilisateur" prefWidth="150"/>
+                            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                            <TableColumn fx:id="colRole" text="Rôle" prefWidth="100"/>
+                            <TableColumn fx:id="colCreatedAt" text="Date d'inscription" prefWidth="150"/>
+                            <TableColumn fx:id="colUserActions" text="Actions" prefWidth="200"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 3: All Demandes -->
+            <Tab text="📝 Toutes les Demandes">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Toutes les Demandes" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Filters -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ComboBox fx:id="statusFilterCombo" promptText="Filtrer par statut"
+                                  style="-fx-pref-height: 40; -fx-pref-width: 150;"/>
+                        <ComboBox fx:id="agentFilterCombo" promptText="Filtrer par agent"
+                                  style="-fx-pref-height: 40; -fx-pref-width: 150;"/>
+                        <TextField fx:id="searchDemandeField" promptText="Rechercher..."
+                                   style="-fx-pref-height: 40; -fx-pref-width: 200;"/>
+                        <Button text="🔍 Appliquer" style="-fx-pref-height: 40;" onAction="#handleFilterDemandes"/>
+                        <Button text="🔄 Réinitialiser" style="-fx-pref-height: 40;" onAction="#handleResetDemandeFilters"/>
+                    </HBox>
+
+                    <!-- Demandes Table -->
+                    <TableView fx:id="allDemandesTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colAllDemandeId" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="colAllTitle" text="Titre" prefWidth="150"/>
+                            <TableColumn fx:id="colAllClient" text="Client" prefWidth="120"/>
+                            <TableColumn fx:id="colAllAgent" text="Agent" prefWidth="120"/>
+                            <TableColumn fx:id="colAllDestination" text="Destination" prefWidth="120"/>
+                            <TableColumn fx:id="colAllBudget" text="Budget" prefWidth="100"/>
+                            <TableColumn fx:id="colAllStatus" text="Statut" prefWidth="100"/>
+                            <TableColumn fx:id="colAllDates" text="Dates" prefWidth="150"/>
+                            <TableColumn fx:id="colAllCreatedAt" text="Créée le" prefWidth="150"/>
+                            <TableColumn fx:id="colAllActions" text="Actions" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 4: All Reservations -->
+            <Tab text="🎫 Toutes les Réservations">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Toutes les Réservations" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Filters -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <ComboBox fx:id="reservationStatusFilter" promptText="Filtrer par statut"
+                                  style="-fx-pref-height: 40; -fx-pref-width: 150;"/>
+                        <DatePicker fx:id="fromDatePicker" promptText="Du" style="-fx-pref-height: 40;"/>
+                        <DatePicker fx:id="toDatePicker" promptText="Au" style="-fx-pref-height: 40;"/>
+                        <Button text="🔍 Appliquer" style="-fx-pref-height: 40;" onAction="#handleFilterReservations"/>
+                        <Button text="🔄 Réinitialiser" style="-fx-pref-height: 40;" onAction="#handleResetReservationFilters"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label text="Revenu total:" style="-fx-font-weight: bold;"/>
+                        <Label fx:id="overallRevenue" text="0 DT" style="-fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+                    </HBox>
+
+                    <!-- Reservations Table -->
+                    <TableView fx:id="allReservationsTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colReservationId" text="ID" prefWidth="50"/>
+                            <TableColumn fx:id="colReservationCode" text="Code" prefWidth="100"/>
+                            <TableColumn fx:id="colReservationClient" text="Client" prefWidth="120"/>
+                            <TableColumn fx:id="colReservationAgent" text="Agent" prefWidth="120"/>
+                            <TableColumn fx:id="colReservationDemande" text="Demande" prefWidth="150"/>
+                            <TableColumn fx:id="colReservationPrice" text="Prix" prefWidth="100"/>
+                            <TableColumn fx:id="colReservationStatus" text="Statut" prefWidth="100"/>
+                            <TableColumn fx:id="colReservationCreatedAt" text="Créée le" prefWidth="150"/>
+                            <TableColumn fx:id="colReservationActions" text="Actions" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- Status Bar -->
+    <bottom>
+        <HBox style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;"
+              alignment="CENTER">
+            <Label fx:id="statusLabel" text="Prêt" style="-fx-text-fill: #666;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

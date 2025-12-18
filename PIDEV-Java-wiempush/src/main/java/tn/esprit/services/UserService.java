@@ -153,4 +153,31 @@ public class UserService implements IService<User> {
         }
         return 0;
     }
+
+    // Add this method to UserService.java
+    public boolean addWithTimestamp(User user) {
+        String query = "INSERT INTO user (username, email, password, role, created_at) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = MaConnexion.getInstance().getCnx().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.setString(4, user.getRole().toString());
+            ps.setTimestamp(5, Timestamp.valueOf(user.getCreatedAt())); // ADD THIS
+
+            int rows = ps.executeUpdate();
+
+            if (rows > 0) {
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    user.setId(generatedKeys.getInt(1));
+                }
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

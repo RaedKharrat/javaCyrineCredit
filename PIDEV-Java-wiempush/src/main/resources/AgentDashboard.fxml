@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.controllers.AgentDashboardController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- Top Navigation -->
+    <top>
+        <HBox style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
+              alignment="CENTER_LEFT" spacing="20">
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ImageView fitWidth="30" fitHeight="30">
+                    <Image url="@../images/travel-icon.png" />
+                </ImageView>
+                <Text fill="#667eea" font="$x3">
+                    <Font size="20" style="BOLD"/>
+                    Travel Agency
+                </Text>
+                <Label text="| Agent Dashboard" style="-fx-text-fill: #666; -fx-font-size: 14;"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox alignment="CENTER" spacing="15">
+                <Label fx:id="welcomeLabel" style="-fx-font-weight: bold;"/>
+                <Button fx:id="logoutButton" text="Déconnexion"
+                        style="-fx-background-color: #ff6b6b; -fx-text-fill: white; -fx-font-weight: bold;"
+                        onAction="#handleLogout"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+
+            <!-- Tab 1: New Demandes -->
+            <Tab text="📨 Nouvelles Demandes">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Demandes en attente d'assignation" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Stats -->
+                    <HBox spacing="20">
+                        <VBox style="-fx-background-color: #ffebee; -fx-padding: 15; -fx-background-radius: 10; -fx-pref-width: 150;">
+                            <Label text="En attente" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                            <Label fx:id="pendingCount" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #f44336;"/>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: #fff3e0; -fx-padding: 15; -fx-background-radius: 10; -fx-pref-width: 150;">
+                            <Label text="En cours" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                            <Label fx:id="inProgressCount" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #FF9800;"/>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: #e8f5e8; -fx-padding: 15; -fx-background-radius: 10; -fx-pref-width: 150;">
+                            <Label text="Validées" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                            <Label fx:id="validatedCount" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Demandes Table -->
+                    <TableView fx:id="newDemandesTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colNewTitle" text="Titre" prefWidth="150"/>
+                            <TableColumn fx:id="colNewClient" text="Client" prefWidth="120"/>
+                            <TableColumn fx:id="colNewDestination" text="Destination" prefWidth="120"/>
+                            <TableColumn fx:id="colNewBudget" text="Budget" prefWidth="100"/>
+                            <TableColumn fx:id="colNewDates" text="Dates" prefWidth="150"/>
+                            <TableColumn fx:id="colNewStatus" text="Statut" prefWidth="120"/>
+                            <TableColumn fx:id="colNewActions" text="Actions" prefWidth="200"/>
+                        </columns>
+                    </TableView>
+
+                    <Label fx:id="noNewDemandesLabel" text="Aucune nouvelle demande"
+                           style="-fx-text-fill: #666; -fx-font-size: 14;" visible="false"/>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 2: My Demandes -->
+            <Tab text="📋 Mes Demandes Assignées">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Mes Demandes" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Search -->
+                    <HBox spacing="10">
+                        <TextField fx:id="searchDemandeField" promptText="Rechercher..."
+                                   style="-fx-pref-height: 40; -fx-pref-width: 300;"/>
+                        <Button text="🔍" style="-fx-pref-height: 40;" onAction="#handleSearchDemande"/>
+                        <Button text="🔄" style="-fx-pref-height: 40;" onAction="#handleRefreshDemandes"/>
+                    </HBox>
+
+                    <!-- Demandes Table -->
+                    <TableView fx:id="myDemandesTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colMyTitle" text="Titre" prefWidth="150"/>
+                            <TableColumn fx:id="colMyClient" text="Client" prefWidth="120"/>
+                            <TableColumn fx:id="colMyDestination" text="Destination" prefWidth="120"/>
+                            <TableColumn fx:id="colMyBudget" text="Budget" prefWidth="100"/>
+                            <TableColumn fx:id="colMyStatus" text="Statut" prefWidth="120"/>
+                            <TableColumn fx:id="colMyActions" text="Actions" prefWidth="250"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Tab 3: My Reservations -->
+            <Tab text="🎫 Mes Réservations">
+                <VBox spacing="15" style="-fx-padding: 20;">
+                    <Label text="Réservations Gérées" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+                    <!-- Stats -->
+                    <HBox spacing="20">
+                        <VBox style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-background-radius: 10; -fx-pref-width: 150;">
+                            <Label text="Total" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                            <Label fx:id="totalReservations" text="0" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: #e8f5e8; -fx-padding: 15; -fx-background-radius: 10; -fx-pref-width: 150;">
+                            <Label text="Confirmées" style="-fx-font-size: 14; -fx-text-fill: #666;"/>
+                            <Label fx:id="confirmedReservations" text="0" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Reservations Table -->
+                    <TableView fx:id="reservationsTable" style="-fx-background-color: white;">
+                        <columns>
+                            <TableColumn fx:id="colResCode" text="Code" prefWidth="100"/>
+                            <TableColumn fx:id="colResClient" text="Client" prefWidth="120"/>
+                            <TableColumn fx:id="colResDemande" text="Demande" prefWidth="150"/>
+                            <TableColumn fx:id="colResPrice" text="Prix" prefWidth="100"/>
+                            <TableColumn fx:id="colResStatus" text="Statut" prefWidth="120"/>
+                            <TableColumn fx:id="colResDate" text="Date" prefWidth="150"/>
+                            <TableColumn fx:id="colResActions" text="Actions" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- Status Bar -->
+    <bottom>
+        <HBox style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;"
+              alignment="CENTER">
+            <Label fx:id="statusLabel" text="Prêt" style="-fx-text-fill: #666;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

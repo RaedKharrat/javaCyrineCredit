@@ -15,16 +15,17 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public void add(Reservation reservation) {
-        String query = "INSERT INTO reservation (reservation_code, total_price, status, demande_id, client_id, agent_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reservation (reservation_code, total_price, status, created_at, demande_id, client_id, agent_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = MaConnexion.getInstance().getCnx().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, reservation.getReservationCode());
             ps.setDouble(2, reservation.getTotalPrice());
             ps.setString(3, reservation.getStatus().toString());
-            ps.setInt(4, reservation.getDemande().getId());
-            ps.setInt(5, reservation.getClient().getId());
-            ps.setInt(6, reservation.getAgent().getId());
+            ps.setTimestamp(4, Timestamp.valueOf(reservation.getCreatedAt())); // ADD THIS
+            ps.setInt(5, reservation.getDemande().getId());
+            ps.setInt(6, reservation.getClient().getId());
+            ps.setInt(7, reservation.getAgent().getId());
 
             ps.executeUpdate();
 
