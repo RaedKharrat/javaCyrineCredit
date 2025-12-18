@@ -10,8 +10,8 @@
 <BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="tn.esprit.controllers.AdminDashboardController"
-            style="-fx-background-color: #f5f5f5;">
-
+            style="-fx-background-color: #f5f5f5;"
+            prefWidth="1200" prefHeight="700">
     <!-- Top Navigation -->
     <top>
         <HBox style="-fx-background-color: white; -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);"
